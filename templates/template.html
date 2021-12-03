@@ -15,12 +15,13 @@
             <button>Submit</button>
           </div>
         </form>
-        {% if filename_content %}
-          <h4>Content image: <img src="{{url_for('static', filename='content_img.jpg')}}"> </h4>
+        {% if filename %}
+          <h4>Content image: <img src="{{url_for('static', filename='content_img.jpg')}}"
+              width="150" height="150"> </h4>
         {% endif %}
         </div>
         <div>
-        <form method="post" enctype="multipart/form-data" action="{{ url_for('style_img') }}">
+        <form method="post" enctype="multipart/form-data" action="{{ url_for('content_img') }}">
           <div>
             <label for="image_uploads">Choose images to upload (PNG, JPG)</label>
             <input type="file" id="style_img" name="style_img" accept=".jpg, .jpeg, .png" multiple>
@@ -29,8 +30,9 @@
             <button>Submit</button>
           </div>
         </form>
-        {% if filename_style %}
-          <h4>Style image: <img src="{{url_for('static', filename='style_img.jpg')}}"> </h4>
+        {% if filename %}
+          <h4>Style image: <img src="{{url_for('static', filename='style_img.jpg')}}"
+            width="150" height="150"> </h4>
         {% endif %}
         </div>
     </body>
