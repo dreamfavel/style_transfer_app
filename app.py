@@ -1,6 +1,7 @@
 import os
-from flask import Flask, # request, redirect, url_for, send_from_directory,
-                  render_template
+from flask import Flask, render_template
+ # request, redirect, url_for, send_from_directory,
+
 
 app = Flask(__name__)
 
