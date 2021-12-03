@@ -2,6 +2,8 @@ import tensorflow as tf
 import tensorflow_hub as hub
 
 
+hub_module = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
+
 def tensor_to_image(tensor):
   '''converts a tensor to an image'''
   tensor_shape = tf.shape(tensor)
@@ -31,3 +33,8 @@ def load_img(path_to_img):
   image = tf.image.convert_image_dtype(image, tf.uint8)
 
   return image
+
+def create_stylized_image(hub_module, content_img, style_img, img_path):
+    stylized_image = hub_module(tf.image.convert_image_dtype(content_img, tf.float32),
+                            tf.image.convert_image_dtype(style_img, tf.float32))[0]
+    tf.keras.utils.save_img(img_path, stylized_image.numpy().squeeze(0))

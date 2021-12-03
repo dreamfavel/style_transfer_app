@@ -8,8 +8,10 @@
         <div>
         <form method="post" enctype="multipart/form-data" action="{{ url_for('content_img') }}">
           <div>
-            <label for="image_upload">Choose images to upload (PNG, JPG)</label>
+            <label for="image_upload">Choose Content Image</label>
             <input type="file" id="content_img" name="content_img" accept=".jpg, .jpeg, .png" multiple>
+            <label for="image_upload">Choose Style Image</label>
+            <input type="file" id="content_img" name="style_img" accept=".jpg, .jpeg, .png" multiple>
           </div>
           <div>
             <button>Submit</button>
@@ -18,22 +20,10 @@
         {% if filename %}
           <h4>Content image: <img src="{{url_for('static', filename='content_img.jpg')}}"
               width="150" height="150"> </h4>
-        {% endif %}
-        </div>
-        <div>
-        <form method="post" enctype="multipart/form-data" action="{{ url_for('content_img') }}">
-          <div>
-            <label for="image_uploads">Choose images to upload (PNG, JPG)</label>
-            <input type="file" id="style_img" name="style_img" accept=".jpg, .jpeg, .png" multiple>
-          </div>
-          <div>
-            <button>Submit</button>
-          </div>
-        </form>
-        {% if filename %}
           <h4>Style image: <img src="{{url_for('static', filename='style_img.jpg')}}"
-            width="150" height="150"> </h4>
+                width="150" height="150"> </h4>
+          <h4>Transformed image: <img src="{{url_for('static', filename='predict_img.jpg')}}"
+                      width="150" height="150"> </h4>
         {% endif %}
-        </div>
     </body>
 </html>

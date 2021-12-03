@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request
- # request, redirect, url_for, send_from_directory,
+from utils import tensor_to_image, load_img
+from utils import create_stylized_image, hub_module
 
 
 app = Flask(__name__)
@@ -9,23 +10,27 @@ app = Flask(__name__)
 def index():
     return render_template('template.html')
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
 def content_img():
-    content_img = request.files.get('content_img')
-    if content_img:
-        filename =  os.getcwd() + '/static/content_img.jpg'
-        filename2 = 'content_img.jpg'
-        content_img.save(filename)
-        return render_template('template.html', filename = filename2)
-    else:
+    if request.method == 'POST':
+        content_img = request.files.get('content_img')
+        filename1 =  os.getcwd() + '/static/content_img.jpg'
+        content_img.save(filename1)
+
         style_img = request.files.get('style_img')
-        if style_img:
-            filename =  os.getcwd() + '/static/style_img.jpg'
-            filename2 = 'style_img.jpg'
-            style_img.save(filename)
-            return render_template('template.html', filename = filename2)
-        else:
-            return render_template('template.html')
+        filename2 =  os.getcwd() + '/static/style_img.jpg'
+        style_img.save(filename2)
+
+
+        content_img = load_img(filename1)
+        style_img = load_img(filename2)
+
+        img_path = os.getcwd() + '/static/predict_img.jpg'
+
+        create_stylized_image(hub_module, content_img, style_img, img_path)
+
+        return render_template('template.html', filename = 'true')
+
 
 
 
