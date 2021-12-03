@@ -1,0 +1,8 @@
+{% extends "template.html" %}
+{% block content %}
+{% if filename %}
+  <p> <img src="{{url_for('static', filename='content_img.jpg')}}"></p>
+{% else %}
+  <p></p>
+{% endif %}
+{% endblock %}
