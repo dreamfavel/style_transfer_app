@@ -11,6 +11,7 @@ google-auth==2.3.3
 google-auth-oauthlib==0.4.6
 google-pasta==0.2.0
 grpcio==1.42.0
+gunicorn==20.1.0
 h5py==3.6.0
 idna==3.3
 importlib-metadata==4.8.2
@@ -24,6 +25,7 @@ MarkupSafe==2.0.1
 numpy==1.21.4
 oauthlib==3.1.1
 opt-einsum==3.3.0
+Pillow==8.4.0
 protobuf==3.19.1
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
