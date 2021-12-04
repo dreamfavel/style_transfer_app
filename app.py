@@ -1,4 +1,5 @@
 import os
+import gc
 import shutil
 from flask import Flask, render_template, request, send_from_directory
 from utils import tensor_to_image, load_img
@@ -42,6 +43,8 @@ def upload_images():
         img_path = STATIC_DIR + 'predict_img.jpg'
         # predict and save image with transfered style
         create_stylized_image(hub_module, content_img, style_img, img_path)
+        # clean ram
+        gc.collect()
 
         return render_template('template.html', filename = 'true')
 
