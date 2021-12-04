@@ -4,19 +4,25 @@
         <title>Style Transfer App</title>
     </head>
     <body>
+
         <h1 style="color:#093657"> Welcome to style transfer application!</h1>
+        <!-- Images Upload Block -->
         <div>
-        <form method="post" enctype="multipart/form-data" action="{{ url_for('content_img') }}">
+        <form method="post" enctype="multipart/form-data" action="{{ url_for('upload_images') }}">
           <div>
-            <label for="image_upload">Choose Content Image</label>
+
+            <label for="content_img">Choose Content Image</label>
             <input type="file" id="content_img" name="content_img" accept=".jpg, .jpeg, .png" multiple>
-            <label for="image_upload">Choose Style Image</label>
-            <input type="file" id="content_img" name="style_img" accept=".jpg, .jpeg, .png" multiple>
+
+            <label for="style_img">Choose Style Image</label>
+            <input type="file" id="style_img" name="style_img" accept=".jpg, .jpeg, .png" multiple>
+
           </div>
           <div>
             <button>Submit</button>
           </div>
         </form>
+        <!-- Images Returns Block -->
         {% if filename %}
           <h4>Content image: <img src="{{url_for('static', filename='content_img.jpg')}}"
               width="150" height="150"> </h4>
@@ -25,5 +31,7 @@
           <h4>Transformed image: <img src="{{url_for('static', filename='predict_img.jpg')}}"
                       width="150" height="150"> </h4>
         {% endif %}
+
+        </div>
     </body>
 </html>

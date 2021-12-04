@@ -35,6 +35,8 @@ def load_img(path_to_img):
   return image
 
 def create_stylized_image(hub_module, content_img, style_img, img_path):
+    '''generates an image with content and style of both images
+       using FastNST model from tensorflow hub'''
     stylized_image = hub_module(tf.image.convert_image_dtype(content_img, tf.float32),
                             tf.image.convert_image_dtype(style_img, tf.float32))[0]
     tf.keras.utils.save_img(img_path, stylized_image.numpy().squeeze(0))
