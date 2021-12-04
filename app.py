@@ -25,7 +25,7 @@ def upload_images():
                 if os.path.isfile(file_path):
                     os.unlink(file_path)
             except Exception as e:
-        print('Failed to delete %s. Reason: %s' % (file_path, e))
+                print('Failed to delete %s. Reason: %s' % (file_path, e))
         # get content image from request
         content_img = request.files.get('content_img')
         filename1 =  STATIC_DIR + 'content_img.jpg'
@@ -39,7 +39,7 @@ def upload_images():
         content_img = load_img(filename1)
         style_img = load_img(filename2)
         # create path to predicted image
-        img_path = os.getcwd() + 'predict_img.jpg'
+        img_path = STATIC_DIR + 'predict_img.jpg'
         # predict and save image with transfered style
         create_stylized_image(hub_module, content_img, style_img, img_path)
 
