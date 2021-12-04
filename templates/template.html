@@ -30,6 +30,7 @@
                 width="150" height="150"> </h4>
           <h4>Transformed image: <img src="{{url_for('static', filename='predict_img.jpg')}}"
                       width="150" height="150"> </h4>
+          <a href="{{ url_for('download', filename='predict_img.jpg') }}">download image</a>
         {% endif %}
 
         </div>

@@ -1,6 +1,6 @@
 import os
 import shutil
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from utils import tensor_to_image, load_img
 from utils import create_stylized_image, hub_module
 
@@ -45,8 +45,9 @@ def upload_images():
 
         return render_template('template.html', filename = 'true')
 
-
-
+@app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
+def download(filename):
+    return send_from_directory(directory=STATIC_DIR, path=filename)
 
 if __name__ == '__main__':
     app.run()
